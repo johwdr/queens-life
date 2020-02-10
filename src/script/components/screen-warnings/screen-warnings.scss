@@ -1,0 +1,29 @@
+@import './../../../styles/global.scss';
+
+
+.screen-size-warning-wrapper-content {
+    padding: 20px;
+    height: 100%;
+
+    width: 100%;
+    text-align: center;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    font-family: gibsonRegular;
+    font-size: 20px;
+    position: absolute;
+    background: #fff;
+    z-index: 30;
+    p {
+        font-family: gibsonRegular;
+        font-size: 20px;
+    }
+}
+#screen-size-warning-wrapper-mobile {
+    max-height: calc(100vh - 40px);
+    position: fixed;
+    left: 0px;
+}

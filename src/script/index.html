@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Parceljs Boilerplate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @font-face{
+            font-family:"gibsonLight";
+            src:url("https://www.dr.dk/assets/fonts/gibson/light/gibson-light-webfont.woff2") format("woff2"),
+            url("https://www.dr.dk/assets/fonts/gibson/light/gibson-light-webfont.woff") format("woff");
+            font-weight:normal;
+        }
+        @font-face{
+            font-family:"gibsonRegular";
+            src:url("https://www.dr.dk/assets/fonts/gibson/regular/gibson-regular-webfont.woff2") format("woff2"),
+            url("https://www.dr.dk/assets/fonts/gibson/regular/gibson-regular-webfont.woff") format("woff");
+            font-weight:normal;
+        }
+        @font-face{
+            font-family:"gibsonSemiBold";
+            src:url("https://www.dr.dk/assets/fonts/gibson/semiBold/gibson-semiBold-webfont.woff2") format("woff2"),
+            url("https://www.dr.dk/assets/fonts/gibson/semiBold/gibson-semiBold-webfont.woff") format("woff");
+            font-weight:normal;
+        }
+        @font-face{
+            font-family:"gibsonBold";
+            src:url("https://www.dr.dk/assets/fonts/gibson/bold/gibson-bold-webfont.woff2") format("woff2"),
+            url("https://www.dr.dk/assets/fonts/gibson/bold/gibson-bold-webfont.woff") format("woff");
+            font-weight:normal;
+        }
+        @font-face {
+            font-family: "gibsonBoldItalic";
+            src: url("https://www.dr.dk/assets/css/007/webfonts/gibson-bold-italic.eot");
+            src: url("https://www.dr.dk/assets/css/007/webfonts/gibson-bold-italic.eot?#iefix") format("embedded-opentype"), url("https://www.dr.dk/assets/css/007/webfonts/gibson-bold-italic.woff2") format("woff2"), url("https://www.dr.dk/assets/css/007/webfonts/gibson-bold-italic.woff2") format("woff"), url("https://www.dr.dk/assets/css/007/webfonts/gibson-bold-italic.ttf") format("truetype"), url("https://www.dr.dk/assets/css/007/webfonts/gibson-bold-italic.svg") format("svg");
+            font-weight: normal
+        }
+
+
+        body {
+            padding: 0px;
+            margin: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div
+	data-story="https://storage.googleapis.com/sheet-parser/86fe53df45ed48518a7abf7ca1163728-storytester-indhold.json"
+    data-config="https://storage.googleapis.com/sheet-parser/d91a3e62bebc1b2f9af2e2875979cb42-detbritiskeimperiesfald-konfiguration.json"
+    class="story-loading"
+    ><svg version="1.1" id="spinner" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+        y="0px" viewBox="0 0 200 200" style="enable-background:new 0 0 200 200;" xml:space="preserve">
+        <g>
+            <circle class="spinner-dot spinner-dot-1" cx="25.6" cy="99.8" r="17.1" />
+            <circle class="spinner-dot spinner-dot-2" cx="100" cy="99.8" r="17.1" />
+            <circle class="spinner-dot spinner-dot-3" cx="174.9" cy="99.8" r="17.1" />
+        </g>
+    </svg>
+    <style>
+        #spinner {
+            display: none;
+        }
+        .story-loading #spinner {
+            position: fixed;
+            z-index: 200;
+            top: 262px;
+            width: 100px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            display: block;
+        }
+        .spinner-dot {
+            animation: dotty alternate 0.6s;
+            animation-iteration-count: infinite;
+            animation-timing-function:cubic-bezier(0.455, 0.03, 0.515, 0.955)
+        }
+        .spinner-dot-2 {
+            animation-delay: 0.2s;
+        }
+        .spinner-dot-3 {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes dotty {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</div>
+    <script src="./index.js"></script>
+</body>
+</html>

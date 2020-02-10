@@ -1,0 +1,72 @@
+@import './../../../styles/global.scss';
+
+[data-story] {
+
+    .story-inner-wrapper {
+        opacity: 1;
+        transition: opacity .3s;
+    }
+    &.story-loading {
+        min-height: 100vh;
+        .story-inner-wrapper {
+            opacity: 0;
+        }
+    }
+
+    @media (min-width: $desktopMinWidth) {
+        width: 100vw;
+        height: 100vh;
+        background-size: cover;
+    }
+
+    .story-inner-wrapper {
+        margin: 0 auto;
+        width: 100vw;
+        height: 100%;
+        @media (min-width: $desktopMinWidth) {
+
+
+            width: $desktopStoryWidth;
+            height: $desktopStoryHeight;
+
+        }
+        margin: 0 auto;
+
+        position: relative;
+        font-family: gibsonRegular;
+        /*transform: translate3d(0,0,0);
+        -webkit-transform: translate3d(0,0,0);*/
+    }
+    #story-restart-button {
+
+        background: none;
+        border: none;
+        outline: none;
+        width: 75px;
+        margin: 10px auto;
+        display: block;
+        position: relative;
+        cursor: pointer;
+        svg {
+            pointer-events: none;
+        }
+
+    }
+
+
+}
+html {
+    height: calc(100% + 1px);
+
+    body {
+        position: fixed;
+        width: 100%;
+        top: 0px;
+        overflow: hidden;
+    }
+}
+
+// Hax
+#content .share-button {
+    display: none !important;
+}

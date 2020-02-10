@@ -1,0 +1,62 @@
+@import './../../../../styles/global.scss';
+
+[data-story] {
+
+    * { -webkit-user-select: none !important; }
+
+    #forward-button {
+        right: 0;
+    }
+    .navigation-arrow {
+        display: none;
+
+        width: 30px;
+        height: 30px;
+
+        position: fixed;
+        top: 360px;
+        z-index: 90;
+        transition: opacity 0.3s;
+        &:hover {
+           opacity: 0.8;
+        }
+    }
+    @media (min-width: $desktopMinWidth) {
+        .navigation-arrow {
+            display: block;
+        }
+        .navigation-arrow.arrow-hidden {
+            display: none;
+        }
+    }
+    #forward-arrow {
+        left: calc(50vw + 200px);
+    }
+    #back-arrow {
+        left: calc(50vw - 230px);
+    }
+    .navigation-button {
+        height: 100%;
+        position: absolute;
+        z-index: 80;
+        top: 0;
+        border: none;
+        background: rgba(0,0,0,0);
+        outline: none;
+        width: 50%;
+        opacity: 0;
+        cursor: pointer;
+        @media (min-width: $desktopMinWidth) {
+            opacity: 1;
+            background: rgba(0,0,0,0);
+            top: 20px;
+        }
+    }
+    .navigation-button::active {
+        //background: rgba(0,0,0,0);
+    }
+    .navigation-arrow-removed, .navigation-button-removed {
+        display: none;
+    }
+}
+body { -webkit-touch-callout: none !important; }

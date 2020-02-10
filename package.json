@@ -1,0 +1,35 @@
+{
+  "name": "parceljs-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node deploy-script.js -t dev",
+    "stage": "node deploy-script.js -t stage",
+    "deploy": "node deploy-script.js -t deploy"
+  },
+  "keywords": [],
+  "author": "TRIX",
+  "license": "ISC",
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
+  "devDependencies": {
+    "autoprefixer": "^9.7.0",
+    "caniuse-lite": "^1.0.30001005",
+    "cssnano": "^4.1.10",
+    "fs-extra": "^7.0.0",
+    "glob-watcher": "^5.0.1",
+    "parcel-bundler": "^1.12.4",
+    "replace-in-file": "^4.1.1",
+    "sass": "^1.22.7"
+  },
+  "dependencies": {
+    "mobile-detect": "^1.4.4",
+    "navigator.sendbeacon": "0.0.20",
+    "promise-polyfill": "8.1.3",
+    "whatwg-fetch": "^3.0.0"
+  }
+}
