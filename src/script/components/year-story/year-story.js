@@ -2,18 +2,19 @@
 
 import 'promise-polyfill/src/polyfill';
 import 'whatwg-fetch'
-import './story.scss'
+import './year-story.scss'
 
-import ScreenWarnings from './../screen-warnings/screen-warnings'
+import ScreenWarnings from '../screen-warnings/screen-warnings'
 import Progress from './progress/progress'
 import Content from './content/content'
 import Navigation from './navigation/navigation'
 import Pointer from './pointer/pointer'
+import Selector from './selector/selector'
 
-import Pingvin from "./../pingvin/pingvin";
+import Pingvin from "../pingvin/pingvin";
 
 
-export default class Story {
+export default class YearStory {
     constructor() {
 
         // UGLY NAV-BAR HACK
@@ -43,10 +44,7 @@ export default class Story {
             story = pathArray[pathArray.length - 1];
         }
 
-        const pingvinNamespace = (process.env.STATS_PREFIX + 'drn-story-' + story).toLowerCase();
-
-        console.log(pingvinNamespace);
-
+        const pingvinNamespace = (process.env.STATS_PREFIX + '-queens-year').toLowerCase();
         const pingvinURL = 'https://pingvin-server.public.prod.gcp.dr.dk'
         this.pingvin = new Pingvin(pingvinNamespace, pingvinURL)
 
@@ -72,9 +70,11 @@ export default class Story {
             });
         }
 
+
+
         this.fetchData().then(() => {
             this.build();
-            this.preloadImages();
+            //this.preloadImages();
         })
     }
     setup() {
@@ -174,20 +174,25 @@ export default class Story {
     }
     build() {
 
-        this.progress = new Progress(this.wrapper, this.noSlides)
-        this.content = new Content(this.wrapper, this.data)
-        this.navigation = new Navigation(this)
-        //this.content.setActiveSlide(0);
-        //this.navigation.setActiveSlide(0);
 
-        this.pointer = new Pointer(this.navigation.getWrapper());
+        this.selector = new Selector((year) => {
+            this.startStory(year);
+            this.progress = new Progress(this.wrapper, this.noSlides)
+            //this.content = new Content(this.wrapper, this.data)
+            this.navigation = new Navigation(this)
+            this.progress = new Progress(this.wrapper, this.noSlides)
+            this.pointer = new Pointer(this.navigation.getWrapper());
+        })
+        this.wrapper.appendChild(this.selector.container);
+        this.container.classList.remove('story-loading')
     }
-    startStory() {
+    startStory(year) {
 
-        this.playing = true;
+        console.log('START STORY YEAR: ' + year);
+        /*this.playing = true;
         this.startTime = new Date().getTime();
         this.tick();
-        this.pingvin.ping('start')
+        this.pingvin.ping('start')*/
     }
     tick() {
         const current = new Date().getTime();

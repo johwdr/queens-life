@@ -1,0 +1,23 @@
+@import './../../../../styles/global.scss';
+
+
+
+[data-story] {
+    #story-selector-wrapper {
+
+        input {
+            font-size: 40px;
+            text-align: center;
+            width: 40px;
+            margin: 5px;
+        }
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    }
+
+}
+
+// https://jsfiddle.net/2fmqgbh6/1

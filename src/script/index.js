@@ -1,2 +1,2 @@
-import Story from "./components/story/story";
-let story = new Story();
+import YearStory from "./components/year-story/year-story";
+let story = new YearStory();
