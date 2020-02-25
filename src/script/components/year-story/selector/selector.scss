@@ -4,12 +4,23 @@
 
 [data-story] {
     #story-selector-wrapper {
-
+        padding-top: 50px;
         input {
             font-size: 40px;
             text-align: center;
             width: 40px;
             margin: 5px;
+            outline: none;
+            border: none;
+            background: #eee;
+            font-family: gibsonLight;
+            font-weight: 100;
+            line-height: 1;
+            padding-top: 8px;
+        }
+        input:focus {
+            background: #fff;
+
         }
         input[type=number]::-webkit-inner-spin-button,
         input[type=number]::-webkit-outer-spin-button {

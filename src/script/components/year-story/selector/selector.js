@@ -21,8 +21,12 @@ export default class Selector {
 
 
         this.digitsInput = [];
+        this.currentDigits = [];
 
         for (let n=0; n<4; n++) {
+
+            this.currentDigits[n] = null;
+
             const input = document.createElement('input');
             input.setAttribute('type', 'number');
             input.setAttribute('id', 'y' + n);
@@ -101,6 +105,8 @@ export default class Selector {
 
         const currentDigit = Number(event.target.id[1]);
 
+        this.currentDigits[currentDigit] = this.digitsInput[currentDigit].value
+
         if (currentDigit < 3) {
             this.digitsInput[currentDigit+1].focus()
         }
@@ -139,14 +145,14 @@ export default class Selector {
 
         const year = Number(this.digitsInput[0].value + this.digitsInput[1].value + this.digitsInput[2].value + this.digitsInput[3].value);
 
-        return (year > 1900 && year < 2020);
+        return (year > 1900 && year < 2000);
 
     }
     moveFocus(event) {
 
         const currentDigit = Number(event.target.id[1]);
 
-        // backspace og back arrow
+        // backspace
         console.log(event.which)
         if (event.which === 8) {
 
@@ -164,7 +170,9 @@ export default class Selector {
             // move back
             if (currentDigit > 0) {
                 setTimeout(() => {
-
+                    if (this.digitsInput[currentDigit].value.length === 0 && this.currentDigits[currentDigit] !== null) {
+                        this.digitsInput[currentDigit].value = this.currentDigits[currentDigit];
+                    }
                     this.digitsInput[currentDigit-1].focus()
                 }, 10)
             }
@@ -173,7 +181,9 @@ export default class Selector {
             // move forward
             if (currentDigit < 3) {
                 setTimeout(() => {
-
+                    if (this.digitsInput[currentDigit].value.length === 0 && this.currentDigits[currentDigit] !== null) {
+                        this.digitsInput[currentDigit].value = this.currentDigits[currentDigit];
+                    }
                     this.digitsInput[currentDigit+1].focus()
                 }, 10)
             }
