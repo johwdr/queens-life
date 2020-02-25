@@ -38,12 +38,6 @@ export default class YearStory {
         this.wrapper = document.createElement('div');
         this.wrapper.classList.add('story-inner-wrapper')
 
-        let story = 'default';
-        if (window.location && window.location.pathname && window.location.pathname.length > 1) {
-            const pathArray = window.location.pathname.split('/');
-            story = pathArray[pathArray.length - 1];
-        }
-
         const pingvinNamespace = (process.env.STATS_PREFIX + '-queens-year').toLowerCase();
         const pingvinURL = 'https://pingvin-server.public.prod.gcp.dr.dk'
         this.pingvin = new Pingvin(pingvinNamespace, pingvinURL)
@@ -172,23 +166,45 @@ export default class YearStory {
                 return;
             })
     }
+
+    setHash(hash) {
+        window.location.hash = '#' + hash;
+    }
+    getHash() {
+        return window.location.hash.replace('#', '')
+
+    }
     build() {
+        const hash = this.getHash();
+        if (hash) {
+
+            this.startStory(hash);
+            this.container.classList.remove('story-loading')
+        } else {
+            this.selector = new Selector((year) => {
+
+                this.selector.hide();
+                this.setHash(year);
+                this.startStory(year);
+
+            })
+            this.wrapper.appendChild(this.selector.container);
+            this.container.classList.remove('story-loading')
+
+        }
 
 
-        this.selector = new Selector((year) => {
-            this.startStory(year);
-            this.progress = new Progress(this.wrapper, this.noSlides)
-            //this.content = new Content(this.wrapper, this.data)
-            this.navigation = new Navigation(this)
-            this.progress = new Progress(this.wrapper, this.noSlides)
-            this.pointer = new Pointer(this.navigation.getWrapper());
-        })
-        this.wrapper.appendChild(this.selector.container);
-        this.container.classList.remove('story-loading')
     }
     startStory(year) {
 
         console.log('START STORY YEAR: ' + year);
+
+
+        this.progress = new Progress(this.wrapper, this.noSlides)
+        //this.content = new Content(this.wrapper, this.data)
+        this.navigation = new Navigation(this)
+        this.progress = new Progress(this.wrapper, this.noSlides)
+        this.pointer = new Pointer(this.navigation.getWrapper());
         /*this.playing = true;
         this.startTime = new Date().getTime();
         this.tick();

@@ -15,7 +15,9 @@ export default class Selector {
         this.build();
 
     }
-
+    hide() {
+        this.container.classList.add('hidden');
+    }
 
     build() {
 
@@ -115,6 +117,8 @@ export default class Selector {
         if (currentDigit === 3 && this.allValid()) {
             const year = Number(this.digitsInput[0].value + this.digitsInput[1].value + this.digitsInput[2].value + this.digitsInput[3].value);
             console.log('GOITO: ' + year);
+
+            this.callback(year)
             // goto year
         }
         if (currentDigit === 3 && !this.allValid()) {
