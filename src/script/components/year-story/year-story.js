@@ -157,9 +157,20 @@ export default class YearStory {
                 return data.json()
             })
             .then(data => {
-                this.data = data.data;
-                this.noSlides = data.data.length;
-
+                this.data = {}
+                data.data.forEach(element => {
+                    if (element.aarstal) {
+                        console.log(element.aarstal)
+                        if (element.aarstal in this.data) {
+                            this.data[element.aarstal].push(element)
+                        } else {
+                            this.data[element.aarstal] = [element]
+                        }
+                    }
+                });
+                //this.noSlides = data.data.length;
+                console.log(this.data)
+                return this.data;
             })
             .catch(err => {
                 console.error('Could not load data.')
@@ -199,16 +210,18 @@ export default class YearStory {
 
         console.log('START STORY YEAR: ' + year);
 
-
-        this.progress = new Progress(this.wrapper, this.noSlides)
-        //this.content = new Content(this.wrapper, this.data)
+        this.year = year;
+        console.log(this.data)
+        this.progress = new Progress(this.wrapper, this.data[this.year].length)
+        this.content = new Content(this.wrapper, this.data[this.year])
+        this.content.setActiveSlide(0);
         this.navigation = new Navigation(this)
-        this.progress = new Progress(this.wrapper, this.noSlides)
         this.pointer = new Pointer(this.navigation.getWrapper());
-        /*this.playing = true;
+
+        this.playing = true;
         this.startTime = new Date().getTime();
         this.tick();
-        this.pingvin.ping('start')*/
+        /*this.pingvin.ping('start')*/
     }
     tick() {
         const current = new Date().getTime();

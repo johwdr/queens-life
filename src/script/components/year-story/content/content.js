@@ -27,6 +27,10 @@ export default class Content {
         this.contentWrapper = document.createElement('div');
         this.contentWrapper.id = 'story-content-wrapper';
         this.container.appendChild(this.contentWrapper);
+        if (!this.data) {
+            console.error('no data for this year')
+            return
+        }
         this.data.forEach((slide, index) => {
 
             this.addContentSlide(index)
@@ -232,6 +236,7 @@ export default class Content {
         if (currentSlideContents['billed-stil']) {
 
             const img = el.querySelector('.story-content-wrapper-image img');
+            console.log(currentSlideContents['billed-stil'])
             const style = JSON.parse(currentSlideContents['billed-stil'])
             Object.keys(style).forEach(key => {
 
