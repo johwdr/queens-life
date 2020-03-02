@@ -206,6 +206,7 @@ export default class YearStory {
 
 
     }
+
     startStory(year) {
 
         console.log('START STORY YEAR: ' + year);

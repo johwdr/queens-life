@@ -8,7 +8,7 @@ export default class Selector {
     constructor(callback) {
 
 
-
+        this.isBirthYear = true;
         this.callback = callback;
         this.container = document.createElement('div');
         this.container.id = 'story-selector-wrapper';
@@ -118,7 +118,11 @@ export default class Selector {
             const year = Number(this.digitsInput[0].value + this.digitsInput[1].value + this.digitsInput[2].value + this.digitsInput[3].value);
             console.log('GOITO: ' + year);
 
-            this.callback(year)
+            if (this.isBirthYear) {
+                this.callback(this.convertBirthYear(year));
+            } else {
+                this.callback(year)
+            }
             // goto year
         }
         if (currentDigit === 3 && !this.allValid()) {
@@ -128,6 +132,11 @@ export default class Selector {
             }
         }
 
+    }
+    convertBirthYear(year) {
+        const age = 2020 - year;
+        const queenYear = 1940 + age;
+        return queenYear;
     }
     missingDigit() {
         for (let n = 0; n < 4; n++) {
@@ -149,7 +158,7 @@ export default class Selector {
 
         const year = Number(this.digitsInput[0].value + this.digitsInput[1].value + this.digitsInput[2].value + this.digitsInput[3].value);
 
-        return (year > 1900 && year < 2000);
+        return (year > 1900 && year <= 2020);
 
     }
     moveFocus(event) {
