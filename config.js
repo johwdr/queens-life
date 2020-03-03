@@ -27,7 +27,7 @@ let config = {
             ASSETS_PATH:'http://localhost:8888/local-deploy/deploy/parceljs-boilerplate/assets/',
             STATS_PREFIX: '',
         },
-        DEPLOY_FOLDER:'/Volumes/2019/',
+        DEPLOY_FOLDER:'/Volumes/2020/',
         OVERWRITE_CONFIRM:true,
         WEBDOK:true,
         MINIFY:true,

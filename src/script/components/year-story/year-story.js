@@ -229,7 +229,7 @@ export default class YearStory {
         console.log(this.data)
         this.noSlides = this.data[this.year].length + 1;
         this.progress = new Progress(this.wrapper, this.noSlides)
-        this.content = new Content(this.wrapper, this.data[this.year], birthYear)
+        this.content = new Content(this.wrapper, this.data[this.year], year)
         this.content.setActiveSlide(0);
         this.navigation = new Navigation(this)
         this.navigation.setActiveSlide(0);

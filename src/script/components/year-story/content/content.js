@@ -12,7 +12,8 @@ const layoutTranslations = {
 }
 
 export default class Content {
-    constructor(container, data) {
+    constructor(container, data, year) {
+        this.year = year;
         this.container = container;
         this.data = data;
         this.slideEls = [];
@@ -36,22 +37,35 @@ export default class Content {
             console.error('no data for this year')
             return
         }
-        this.buildStartSlide();
+        this.buildStartSlide(this.data);
         this.data.forEach((slide, index) => {
 
             this.addContentSlide(index)
         })
 
     }
+    buildStartSlideContent() {
+
+        const age = this.year - 1940;
+
+        if (age === 0) {
+            return `Dronning Margrethe blev født i ${this.year}`;
+        }
+        if (age === 80) {
+            return `Dronning Margrethe bliver ${age} år gammel i ${this.year}`;
+        }
+        return `Dronning Margrethe blev ${age} år gammel i ${this.year}`;
+    }
     buildStartSlide() {
 
         const el = document.createElement('div');
+        const content = this.buildStartSlideContent();
         let textOnly = true;
 
         el.classList.add('story-slide');
         el.classList.add('story-slide-number-frontpage');
 
-        el.innerHTML = `<div class="slide-frontpage-content">HEr er et år</div>`
+        el.innerHTML = `<div class="slide-frontpage-content">${content}</div>`
         this.slideEls.push(el)
         this.contentWrapper.appendChild(el)
     }
