@@ -31,11 +31,24 @@ export default class Content {
             console.error('no data for this year')
             return
         }
+        this.buildStartSlide();
         this.data.forEach((slide, index) => {
 
             this.addContentSlide(index)
         })
 
+    }
+    buildStartSlide() {
+
+        const el = document.createElement('div');
+        let textOnly = true;
+
+        el.classList.add('story-slide');
+        el.classList.add('story-slide-number-frontpage');
+
+        el.innerHTML = `<div class="slide-frontpage-content">HEr er et år</div>`
+        this.slideEls.push(el)
+        this.contentWrapper.appendChild(el)
     }
     getCurrentActiveSlideElement() {
         return this.slideEls[this.currentActiveSlide];
@@ -60,7 +73,7 @@ export default class Content {
     }
     startVideo(slide) {
 
-        if (!this.data[slide].videoElement) {
+        if (!this.data[slide] || !this.data[slide].videoElement) {
             return;
         }
 

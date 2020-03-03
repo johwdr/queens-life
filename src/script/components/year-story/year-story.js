@@ -10,7 +10,8 @@ import Content from './content/content'
 import Navigation from './navigation/navigation'
 import Pointer from './pointer/pointer'
 import Selector from './selector/selector'
-
+import Frontpage from './frontpage/frontpage'
+import End from './end/end'
 import Pingvin from "../pingvin/pingvin";
 
 
@@ -183,7 +184,6 @@ export default class YearStory {
     }
     getHash() {
         return window.location.hash.replace('#', '')
-
     }
     build() {
         const hash = this.getHash();
@@ -192,29 +192,35 @@ export default class YearStory {
             this.startStory(hash);
             this.container.classList.remove('story-loading')
         } else {
+
+
+
             this.selector = new Selector((year) => {
 
+                this.frontPage.container.classList.add('frontpage-hidden')
                 this.selector.hide();
-                this.setHash(year);
-                this.startStory(year);
+                //this.setHash(year);
+                this.startStory(year, true);
 
             })
-            this.wrapper.appendChild(this.selector.container);
+            this.frontPage = new Frontpage(this.selector.container);
+            this.wrapper.appendChild(this.frontPage.container);
             this.container.classList.remove('story-loading')
 
         }
-
+        this.end = new End(this.selector.container);
+        this.wrapper.appendChild(this.end.container);
 
     }
 
-    startStory(year) {
+    startStory(year, birthYear = false) {
 
         console.log('START STORY YEAR: ' + year);
 
         this.year = year;
         console.log(this.data)
-        this.progress = new Progress(this.wrapper, this.data[this.year].length)
-        this.content = new Content(this.wrapper, this.data[this.year])
+        this.progress = new Progress(this.wrapper, this.data[this.year].length + 1)
+        this.content = new Content(this.wrapper, this.data[this.year], birthYear)
         this.content.setActiveSlide(0);
         this.navigation = new Navigation(this)
         this.pointer = new Pointer(this.navigation.getWrapper());
@@ -261,6 +267,8 @@ export default class YearStory {
         const activeSlide = Math.floor(this.currentInterval / this.freq);
 
         if (activeSlide != this.activeSlide) {
+
+            console.log(activeSlide)
             this.content.stopVideo(this.activeSlide)
             this.activeSlide = activeSlide;
             this.content.setActiveSlide(activeSlide);
@@ -269,7 +277,7 @@ export default class YearStory {
 
 
             // if last slide
-            if (activeSlide >= (this.noSlides - 1)) {
+            if (activeSlide >= (this.noSlides)) {
                 this.setStateForLastSlide()
 
             }
@@ -318,7 +326,7 @@ export default class YearStory {
 
         const step = (this.activeSlide > 1) ? (this.activeSlide-1) : 0;
 
-        if (this.data[step].baggrund && this.content.isVideo(this.data[step].baggrund) && this.activeSlide === step) {
+        if (this.data[step] && this.data[step].baggrund && this.content.isVideo(this.data[step].baggrund) && this.activeSlide === step) {
             this.content.startVideo(step);
         }
 

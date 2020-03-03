@@ -39,6 +39,7 @@ export default class Selector {
                 input.setAttribute('pattern', '[1-2]');
                 input.setAttribute('min', '1');
                 input.setAttribute('max', '2');
+                input.setAttribute('autofocus', 'true');
             } else {
                 input.setAttribute('pattern', '[0-9]');
                 input.setAttribute('min', '0');
