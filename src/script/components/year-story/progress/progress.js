@@ -45,6 +45,7 @@ export default class Progress {
         this.progressSlideEls[currentSlide].style.transform = 'scaleX(' + progress + ')';
     }
     end() {
+        this.progressEl.classList.add('story-progress-element-hidden')
         this.progressSlideEls[this.progressSlideEls.length - 1].style.transform = 'scaleX(1)';
     }
 }

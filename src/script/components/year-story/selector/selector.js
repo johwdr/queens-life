@@ -5,10 +5,10 @@ import './selector.scss'
 
 
 export default class Selector {
-    constructor(callback) {
+    constructor(callback, isBirthYear = true) {
 
 
-        this.isBirthYear = true;
+        this.isBirthYear = isBirthYear;
         this.callback = callback;
         this.container = document.createElement('div');
         this.container.id = 'story-selector-wrapper';
@@ -18,7 +18,12 @@ export default class Selector {
     hide() {
         this.container.classList.add('hidden');
     }
+    clear() {
 
+        this.digitsInput.forEach(input => {
+            input.value = ''
+        })
+    }
     build() {
 
 

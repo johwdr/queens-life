@@ -22,12 +22,15 @@ export default class Navigation {
 
         this.activeSlide = slide;
 
-        if ((slide === 0 || (slide >= this.caller.noSlides - 1))) {
+        if (slide === 0) {
             this.backArrow.classList.add('arrow-hidden')
         } else {
             this.backArrow.classList.remove('arrow-hidden')
         }
-        if ((slide >= this.caller.noSlides - 1)) {
+
+        console.log(this.caller.noSlides, slide)
+
+        if ((slide >= this.caller.noSlides)) {
             this.forwardArrow.classList.add('arrow-hidden')
         } else {
             this.forwardArrow.classList.remove('arrow-hidden')
@@ -200,8 +203,15 @@ export default class Navigation {
         return mq(query);
     }
     end() {
+
         this.forward.classList.add('navigation-button-removed')
         this.back.classList.add('navigation-button-removed')
+
+    }
+    hide() {
+        this.innerWrapper.classList.add('navigation-hidden')
+        this.backArrow.classList.add('navigation-hidden')
+        this.forwardArrow.classList.add('navigation-hidden')
 
     }
 

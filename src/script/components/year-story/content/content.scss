@@ -1,6 +1,9 @@
 @import './../../../../styles/global.scss';
 
 [data-story] {
+    .story-content-wrapper-hidden {
+        display: none;
+    }
     .story-slide {
         display: none;
         padding: 40px 10px 40px;

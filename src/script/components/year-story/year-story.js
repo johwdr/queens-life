@@ -195,21 +195,29 @@ export default class YearStory {
 
 
 
-            this.selector = new Selector((year) => {
+            this.frontPageSelector = new Selector((year) => {
 
-                this.frontPage.container.classList.add('frontpage-hidden')
-                this.selector.hide();
+                this.frontPage.hide();
+                this.frontPageSelector.hide();
                 //this.setHash(year);
                 this.startStory(year, true);
 
             })
-            this.frontPage = new Frontpage(this.selector.container);
+            this.frontPage = new Frontpage(this.frontPageSelector.container);
             this.wrapper.appendChild(this.frontPage.container);
             this.container.classList.remove('story-loading')
 
         }
-        this.end = new End(this.selector.container);
-        this.wrapper.appendChild(this.end.container);
+        this.endScreenSelector = new Selector((year) => {
+
+            this.endScreen.hide();
+
+            //this.setHash(year);
+            this.startStory(year);
+
+        }, false)
+        this.endScreen = new End(this.endScreenSelector.container);
+        this.wrapper.appendChild(this.endScreen.container);
 
     }
 
@@ -219,10 +227,12 @@ export default class YearStory {
 
         this.year = year;
         console.log(this.data)
-        this.progress = new Progress(this.wrapper, this.data[this.year].length + 1)
+        this.noSlides = this.data[this.year].length + 1;
+        this.progress = new Progress(this.wrapper, this.noSlides)
         this.content = new Content(this.wrapper, this.data[this.year], birthYear)
         this.content.setActiveSlide(0);
         this.navigation = new Navigation(this)
+        this.navigation.setActiveSlide(0);
         this.pointer = new Pointer(this.navigation.getWrapper());
 
         this.playing = true;
@@ -249,20 +259,16 @@ export default class YearStory {
         console.log('end')
         this.playing = false;
         this.progress.end();
-
         this.navigation.end();
+        this.navigation.hide();
         this.pause();
+        this.content.destroy();
+        this.activeSlide = 0;
+        this.endScreenSelector.clear();
+        this.endScreen.show();
 
     }
-    restartStory() {
 
-
-        this.pingvin.ping('restart')
-        this.navigation.restart();
-        this.pointer.reenable();
-        this.startStory();
-        console.log('alles restarted')
-    }
     updateUI() {
         const activeSlide = Math.floor(this.currentInterval / this.freq);
 

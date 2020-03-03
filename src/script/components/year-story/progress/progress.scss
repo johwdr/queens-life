@@ -22,6 +22,9 @@
             padding-top: 10px;
             padding-bottom: 10px;
         }
+        &.story-progress-element-hidden {
+            display: none;
+        }
     }
     .story-progress-element-slide {
         background: rgba(255,255,255, 0.5);

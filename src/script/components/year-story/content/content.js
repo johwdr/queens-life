@@ -21,6 +21,11 @@ export default class Content {
         this.build();
 
     }
+    destroy() {
+        //this.contentWrapper.classList.add('story-content-wrapper-hidden')
+        this.container.removeChild(this.contentWrapper);
+        this.currentActiveSlide = null;
+    }
 
     build() {
 
@@ -55,6 +60,7 @@ export default class Content {
     }
     setActiveSlide(slide) {
         this.slideEls[slide].style.display = 'flex';
+        console.log('set active')
         this.startVideo(slide)
         if (this.currentActiveSlide || this.currentActiveSlide===0) {
             this.slideEls[this.currentActiveSlide].style.display = 'none';
@@ -63,7 +69,7 @@ export default class Content {
     }
     stopVideo(slide) {
 
-        if (!this.data[slide].videoElement) {
+        if (!this.data[slide] || !this.data[slide].videoElement) {
             return;
         }
 
@@ -169,41 +175,6 @@ export default class Content {
                     ${currentSlideContents.tekst}
                     </div>
                 </div>
-            `;
-        }
-        // LAST SLIDE
-        if (lastSlide) {
-            content += `
-                <div class="story-content-restart-wrapper">
-                    <button id="story-restart-button">
-                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                            viewBox="0 0 150 150" style="enable-background:new 0 0 150 150;" xml:space="preserve">
-                            <style type="text/css">
-                                .restart-button-bg{fill:#FF001E;}
-                                .restart-button-path{fill:#FFFFFF;}
-                            </style>
-                            <g>
-                                <circle class="restart-button-bg" cx="75.4" cy="75.5" r="75"/>
-                                <g>
-                                    <polygon class="restart-button-path" points="72.3,73.7 49.6,51.2 72.2,28.6 79,35.4 63.2,51.1 79.1,66.9 		"/>
-                                    <path class="restart-button-path" d="M77.4,110.1c-17.8,0-32.4-14.5-32.4-32.4h9.6c0,12.5,10.2,22.8,22.8,22.8c12.5,0,22.8-10.2,22.8-22.8
-                                        C100.2,65.2,90,55,77.4,55H60.8v-9.6h16.6c17.8,0,32.4,14.5,32.4,32.4C109.8,95.5,95.2,110.1,77.4,110.1z"/>
-                                </g>
-                            </g>
-                        </svg>
-
-                    </button>
-                </div>
-            `;
-        }
-
-        if (currentSlideContents.link && currentSlideContents['link-tekst']) {
-            content += `
-                <a href="${currentSlideContents.link}" class="story-content-link">
-
-                    ${currentSlideContents['link-tekst']}
-
-                </a>
             `;
         }
 

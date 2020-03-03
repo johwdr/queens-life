@@ -1,41 +1,13 @@
 @import './../../../../styles/global.scss';
 
 [data-story] {
+    #end-container {
 
-
-    #story-progress-element {
-        width: 100vw;
-
-        @media (min-width: 500px) {
-            width: $desktopStoryWidth;
-        }
-        height: 20px;
-        padding-top: 5px;
-        //background: #00f;
-        justify-content: space-between;
         display: flex;
-        flex-direction:row;
-        position: absolute;
-        z-index: 20;
-        @media (min-width: $desktopMinWidth) {
-            position: relative;
-            padding-top: 10px;
-            padding-bottom: 10px;
+        text-align: center;
+        justify-content: flex-end;
+        &.end-slide-hidden {
+            display: none;
         }
-    }
-    .story-progress-element-slide {
-        background: rgba(255,255,255, 0.5);
-        height: 4px;
-        width: 100%;
-        margin-right: 2px;
-    }
-    .story-progress-element-slide:last-child {
-        margin-right: 0px;
-    }
-    .story-progress-element-slide-progress {
-        background: #fff;
-        height: 4px;
-        transform-origin: left;
-
     }
 }

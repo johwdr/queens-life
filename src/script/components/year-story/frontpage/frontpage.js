@@ -29,4 +29,7 @@ export default class Frontpage {
             container: this.container
         }
     }
+    hide() {
+        this.container.classList.add('frontpage-hidden')
+    }
 }

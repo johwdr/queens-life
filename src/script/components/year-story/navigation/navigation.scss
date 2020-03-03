@@ -24,6 +24,9 @@
     @media (min-width: $desktopMinWidth) {
         .navigation-arrow {
             display: block;
+            &.navigation-hidden {
+                display: none;
+            }
         }
         .navigation-arrow.arrow-hidden {
             display: none;
