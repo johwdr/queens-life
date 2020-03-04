@@ -216,7 +216,10 @@ export default class YearStory {
             this.startStory(year);
 
         }, false)
-        this.endScreen = new End(this.endScreenSelector.container);
+        this.endScreen = new End(this.endScreenSelector.container, (year) => {
+            this.endScreen.hide();
+            this.startStory(year)
+        });
         this.wrapper.appendChild(this.endScreen.container);
 
     }
@@ -266,6 +269,8 @@ export default class YearStory {
         this.pause();
         this.content.destroy();
         this.activeSlide = 0;
+        this.pointer.end();
+        this.endScreen.updateContent(this.year)
         this.endScreen.show();
         this.endScreenSelector.clear();
 

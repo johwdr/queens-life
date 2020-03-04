@@ -9,7 +9,7 @@
             display: none;
         }
         input {
-            font-size: 40px;
+            font-size: 36px;
             text-align: center;
             width: 40px;
             margin: 5px;
@@ -19,6 +19,7 @@
             font-family: Publik;
             font-weight: 100;
             line-height: 1;
+            caret-color: black;
         }
         input:focus {
             background: #fff;

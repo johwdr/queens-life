@@ -2,7 +2,7 @@
 
 import './selector.scss'
 
-
+const timeoutDuration = 50;
 
 export default class Selector {
     constructor(callback, isBirthYear = true) {
@@ -61,7 +61,7 @@ export default class Selector {
                     setTimeout(() => {
                         this.handleInput(event);
 
-                    },10)
+                    },100)
                 } else if (this.isMoveChar(event)) {
                     this.moveFocus(event);
                 } else {
@@ -115,21 +115,25 @@ export default class Selector {
 
 
 
-        console.log('handle input: ' + event)
 
+        const allValid = this.allValid();
         const currentDigit = Number(event.target.id[1]);
 
         this.currentDigits[currentDigit] = this.digitsInput[currentDigit].value
 
         if (currentDigit < 3) {
-            this.digitsInput[currentDigit+1].focus()
+            setTimeout(() => {
+                this.digitsInput[currentDigit+1].focus()
+            }, timeoutDuration);
         }
 
+        console.log('current digit ' + currentDigit)
+        console.log('all valid ' + allValid)
 
-        if (currentDigit === 3 && this.allValid()) {
+        if (currentDigit === 3 && allValid) {
             const year = Number(this.digitsInput[0].value + this.digitsInput[1].value + this.digitsInput[2].value + this.digitsInput[3].value);
             console.log('GOITO: ' + year);
-
+            this.digitsInput[currentDigit].blur();
             if (this.isBirthYear) {
                 this.callback(this.convertBirthYear(year));
             } else {
@@ -137,7 +141,7 @@ export default class Selector {
             }
             // goto year
         }
-        if (currentDigit === 3 && !this.allValid()) {
+        if (currentDigit === 3 && !allValid) {
 
             if (this.missingDigit()) {
                 this.gotoMissingDigit();
@@ -190,7 +194,7 @@ export default class Selector {
                 setTimeout(() => {
 
                     this.digitsInput[currentDigit-1].focus()
-                }, 10)
+                }, timeoutDuration)
             }
 
             // delete and move back
@@ -203,7 +207,7 @@ export default class Selector {
                         this.digitsInput[currentDigit].value = this.currentDigits[currentDigit];
                     }
                     this.digitsInput[currentDigit-1].focus()
-                }, 10)
+                }, timeoutDuration)
             }
         }
         if (event.which === 39) {
@@ -214,7 +218,7 @@ export default class Selector {
                         this.digitsInput[currentDigit].value = this.currentDigits[currentDigit];
                     }
                     this.digitsInput[currentDigit+1].focus()
-                }, 10)
+                }, timeoutDuration)
             }
         }
         console.log('move focus: ' + event)

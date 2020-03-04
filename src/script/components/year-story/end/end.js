@@ -2,13 +2,26 @@
 
 import './end.scss'
 
+const url = 'https://storage.googleapis.com/sheet-parser/082da609c0b703cc96c80bfbe1c3c5be-hvadlavededronningenpminalder-forslag.json'
+
 export default class End {
-    constructor(selector) {
+    constructor(selector, linkFunction) {
+        this.currentLinkIndex = 0;
         this.selector = selector;
+        this.linkFunction = linkFunction;
         return this.build();
     }
 
     build() {
+
+        fetch(url)
+            .then(json => {
+                return json.json()
+            })
+            .then(data => {
+                this.data = data.data;
+                console.log(this.data)
+            })
 
         this.container = document.createElement('div');
 
@@ -18,15 +31,50 @@ export default class End {
 
         this.endSlideContent = document.createElement('div');
 
-        this.endSlideContent.innerHTML = `
+        this.yearLink = document.createElement('a');
+        this.yearLink.classList.add('year-link')
+        this.yearLink.href = '#';
+        this.yearLink.addEventListener('click', () => {
+            console.log('CLICK')
+            console.log(this.nextYear)
+            this.linkFunction(this.nextYear)
+        })
 
-            <h1><span class="story-text-hilite">SLUT</span></h1>
-        `;
+
+
+        //this.endSlideContent.innerHTML = endContent;
         this.container.appendChild(this.endSlideContent)
+
+
 
         this.container.appendChild(this.selector)
 
+        this.container.appendChild(this.yearLink)
+
         return this;
+    }
+    updateContent(year) {
+        this.currentYear = year;
+
+        const next = this.getNextLink();
+        if (this.currentLinkIndex >= this.data.length) {
+            this.currentLinkIndex = 0;
+        }
+
+        this.yearLink.innerText = next.text;
+        this.nextYear = next.aarstal;
+
+        this.endSlideContent.innerHTML = year + ' - random shit: ' + Math.random();
+    }
+    getNextLink() {
+
+        const data = this.data[this.currentLinkIndex];
+        console.log(data)
+        if (Number(data.aarstal) === Number(this.currentYear)) {
+            this.currentLinkIndex++;
+            return this.data[this.currentLinkIndex];
+        }
+        return data;
     }
     show() {
         this.container.classList.remove('end-slide-hidden');

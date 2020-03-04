@@ -2,12 +2,15 @@
 
 [data-story] {
     #end-container {
-
+        color: #fff;
         display: flex;
         text-align: center;
         justify-content: flex-end;
         &.end-slide-hidden {
             display: none;
+        }
+        .year-link {
+            font-size: 40px;
         }
     }
 }
