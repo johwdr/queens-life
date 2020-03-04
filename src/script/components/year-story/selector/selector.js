@@ -19,10 +19,16 @@ export default class Selector {
         this.container.classList.add('hidden');
     }
     clear() {
-
+        console.log('clear')
         this.digitsInput.forEach(input => {
             input.value = ''
         })
+        this.currentDigits.forEach((valdue, index) => {
+            this.currentDigits[index] = '';
+        })
+        setTimeout(() => {
+            this.initFocus();
+        }, 200)
     }
     build() {
 
@@ -166,6 +172,10 @@ export default class Selector {
 
         return (year > 1900 && year <= 2020);
 
+    }
+    initFocus() {
+        console.log('init focus')
+        this.digitsInput[0].focus()
     }
     moveFocus(event) {
 

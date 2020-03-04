@@ -233,7 +233,9 @@ export default class YearStory {
         this.content.setActiveSlide(0);
         this.navigation = new Navigation(this)
         this.navigation.setActiveSlide(0);
-        this.pointer = new Pointer(this.navigation.getWrapper());
+        if (!this.pointer) {
+            this.pointer = new Pointer(this.navigation.getWrapper());
+        }
 
         this.playing = true;
         this.startTime = new Date().getTime();
@@ -264,8 +266,8 @@ export default class YearStory {
         this.pause();
         this.content.destroy();
         this.activeSlide = 0;
-        this.endScreenSelector.clear();
         this.endScreen.show();
+        this.endScreenSelector.clear();
 
     }
 
@@ -274,7 +276,10 @@ export default class YearStory {
 
         if (activeSlide != this.activeSlide) {
 
-            console.log(activeSlide)
+            if (activeSlide  === this.noSlides) {
+                this.end();
+                return;
+            }
             this.content.stopVideo(this.activeSlide)
             this.activeSlide = activeSlide;
             this.content.setActiveSlide(activeSlide);
@@ -283,10 +288,10 @@ export default class YearStory {
 
 
             // if last slide
-            if (activeSlide >= (this.noSlides)) {
+            /*if (activeSlide >= (this.noSlides)) {
                 this.setStateForLastSlide()
 
-            }
+            }*/
         }
 
 
@@ -296,19 +301,12 @@ export default class YearStory {
         this.progress.update(activeSlide, this.slideProgess / this.freq);
 
     }
-    setStateForLastSlide() {
+    /*setStateForLastSlide() {
         console.log('set last slide');
         this.pingvin.ping('end')
         this.navigation.end()
         this.pointer.end();
-
-        const restartBtn = document.getElementById('story-restart-button');
-        restartBtn.addEventListener('click', () => {
-            console.log('restart button clicked')
-            this.restartStory()
-        })
-
-    }
+    }*/
 
 
 

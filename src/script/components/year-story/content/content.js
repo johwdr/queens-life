@@ -73,6 +73,11 @@ export default class Content {
         return this.slideEls[this.currentActiveSlide];
     }
     setActiveSlide(slide) {
+        if (!this.slideEls[slide]) {
+            console.log('NO ' + slide)
+            return
+        }
+
         this.slideEls[slide].style.display = 'flex';
         console.log('set active')
         this.startVideo(slide)
