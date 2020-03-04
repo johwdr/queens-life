@@ -2,7 +2,7 @@
 
 import './selector.scss'
 
-const timeoutDuration = 50;
+const timeoutDuration = 30;
 
 export default class Selector {
     constructor(callback, isBirthYear = true) {

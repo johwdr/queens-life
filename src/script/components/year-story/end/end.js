@@ -31,10 +31,10 @@ export default class End {
 
         this.endSlideContent = document.createElement('div');
 
-        this.yearLink = document.createElement('a');
-        this.yearLink.classList.add('year-link')
-        this.yearLink.href = '#';
-        this.yearLink.addEventListener('click', () => {
+        this.yearSelectButton = document.createElement('button');
+        this.yearSelectButton.classList.add('year-link')
+
+        this.yearSelectButton.addEventListener('click', () => {
             console.log('CLICK')
             console.log(this.nextYear)
             this.linkFunction(this.nextYear)
@@ -49,7 +49,7 @@ export default class End {
 
         this.container.appendChild(this.selector)
 
-        this.container.appendChild(this.yearLink)
+        this.container.appendChild(this.yearSelectButton)
 
         return this;
     }
@@ -61,7 +61,7 @@ export default class End {
             this.currentLinkIndex = 0;
         }
 
-        this.yearLink.innerText = next.text;
+        this.yearSelectButton.innerText = next.text;
         this.nextYear = next.aarstal;
 
         this.endSlideContent.innerHTML = year + ' - random shit: ' + Math.random();
