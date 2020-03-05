@@ -9,8 +9,18 @@
         &.end-slide-hidden {
             display: none;
         }
-        .year-link {
-            font-size: 40px;
+        .year-button {
+            font-size: 20px;
+            background: #eaceda;
+            color: #333;
+            border: none;
+            padding: 15px 5px;
+            display: block;
+            margin-bottom: 20px;
         }
+        #end-more-link {
+            color: #fff;
+        }
+
     }
 }

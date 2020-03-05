@@ -5,6 +5,7 @@
 [data-story] {
     #story-selector-wrapper {
         padding-top: 50px;
+        margin-bottom: 20px;
         &.hidden {
             display: none;
         }
@@ -20,6 +21,7 @@
             font-weight: 100;
             line-height: 1;
             caret-color: black;
+            color: #333;
         }
         input:focus {
             background: #fff;

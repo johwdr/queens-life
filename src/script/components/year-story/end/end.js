@@ -5,10 +5,11 @@ import './end.scss'
 const url = 'https://storage.googleapis.com/sheet-parser/082da609c0b703cc96c80bfbe1c3c5be-hvadlavededronningenpminalder-forslag.json'
 
 export default class End {
-    constructor(selector, linkFunction) {
+    constructor(selector, linkFunction, config) {
         this.currentLinkIndex = 0;
         this.selector = selector;
         this.linkFunction = linkFunction;
+        this.config = config;
         return this.build();
     }
 
@@ -32,7 +33,7 @@ export default class End {
         this.endSlideContent = document.createElement('div');
 
         this.yearSelectButton = document.createElement('button');
-        this.yearSelectButton.classList.add('year-link')
+        this.yearSelectButton.classList.add('year-button')
 
         this.yearSelectButton.addEventListener('click', () => {
             console.log('CLICK')
@@ -41,6 +42,11 @@ export default class End {
         })
 
 
+        this.link = document.createElement('a');
+        this.link.id = 'end-more-link'
+        this.link.innerText = this.config['linktekst']
+        this.link.href = this.config['linkurl']
+        console.log(this.config)
 
         //this.endSlideContent.innerHTML = endContent;
         this.container.appendChild(this.endSlideContent)
@@ -50,6 +56,8 @@ export default class End {
         this.container.appendChild(this.selector)
 
         this.container.appendChild(this.yearSelectButton)
+
+        this.container.appendChild(this.link)
 
         return this;
     }
@@ -64,7 +72,7 @@ export default class End {
         this.yearSelectButton.innerText = next.text;
         this.nextYear = next.aarstal;
 
-        this.endSlideContent.innerHTML = year + ' - random shit: ' + Math.random();
+        this.endSlideContent.innerHTML = 'Vil du se et andet år?';
     }
     getNextLink() {
 

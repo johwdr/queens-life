@@ -61,7 +61,7 @@ export default class Selector {
                     setTimeout(() => {
                         this.handleInput(event);
 
-                    },100)
+                    }, timeoutDuration)
                 } else if (this.isMoveChar(event)) {
                     this.moveFocus(event);
                 } else {

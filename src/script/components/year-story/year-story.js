@@ -58,19 +58,19 @@ export default class YearStory {
             return;
         }
         this.configURL = el.dataset.config;
-        if (this.configURL) {
-            this.fetchConfig().then(() => {
 
-                this.setup();
-            });
+        const promises = [];
+
+        if (this.configURL) {
+            promises.push(this.fetchConfig())
         }
 
+        promises.push(this.fetchData());
 
-
-        this.fetchData().then(() => {
+        Promise.all(promises).then(() => {
             this.build();
-            //this.preloadImages();
-        })
+            this.setup();
+        });
     }
     setup() {
 
@@ -149,6 +149,7 @@ export default class YearStory {
                 return data.json()
             })
             .then(data => {
+
                 this.config = data.data[0];
             })
     }
@@ -161,7 +162,7 @@ export default class YearStory {
                 this.data = {}
                 data.data.forEach(element => {
                     if (element.aarstal) {
-                        console.log(element.aarstal)
+
                         if (element.aarstal in this.data) {
                             this.data[element.aarstal].push(element)
                         } else {
@@ -170,7 +171,7 @@ export default class YearStory {
                     }
                 });
                 //this.noSlides = data.data.length;
-                console.log(this.data)
+
                 return this.data;
             })
             .catch(err => {
@@ -216,10 +217,11 @@ export default class YearStory {
             this.startStory(year);
 
         }, false)
+
         this.endScreen = new End(this.endScreenSelector.container, (year) => {
             this.endScreen.hide();
             this.startStory(year)
-        });
+        }, this.config);
         this.wrapper.appendChild(this.endScreen.container);
 
     }
@@ -229,7 +231,7 @@ export default class YearStory {
         console.log('START STORY YEAR: ' + year);
 
         this.year = year;
-        console.log(this.data)
+
         this.noSlides = this.data[this.year].length + 1;
         this.progress = new Progress(this.wrapper, this.noSlides)
         this.content = new Content(this.wrapper, this.data[this.year], year)
