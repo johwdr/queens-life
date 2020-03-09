@@ -118,6 +118,10 @@ export default class Content {
         el.classList.add('story-slide');
         el.classList.add('story-slide-number-' + activeSlide);
 
+        if (currentSlideContents.retning && currentSlideContents.retning.toLowerCase() === 'omvendt') {
+            el.classList.add('story-slide-reversed');
+        }
+
 
 
         let content = '';
