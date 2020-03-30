@@ -1,14 +1,26 @@
 @import './../../../../styles/global.scss';
 
 [data-story] #frontpage-container {
-
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #edc9d5;
+    background-image: url(https://dr.dk/nyheder/htm/grafik/2020/M80/m80-forside-bg.jpg);
     display: flex;
     text-align: center;
-    justify-content: flex-end;
+    justify-content: center;
     &.frontpage-hidden {
         display: none;
     }
+
+    .help-text {
+        color: $mainTextColor;
+    }
     h1 {
         margin: 0 auto;
+        color: $mainTextColor;
+        font-style: normal;
+        line-height: 1.0;
+        text-transform: none;
     }
 }
