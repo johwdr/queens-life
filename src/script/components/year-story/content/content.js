@@ -65,6 +65,13 @@ export default class Content {
         el.classList.add('story-slide');
         el.classList.add('story-slide-number-frontpage');
 
+
+        let age = this.year - 1940;
+        if (age < 10) {
+            age = '0' + age;
+        }
+        el.style.backgroundImage = `url(https://dr.dk/nyheder/htm/grafik/2020/M80/alder/${age}.jpg`;
+
         el.innerHTML = `<div class="slide-frontpage-content">${content}</div>`
         this.slideEls.push(el)
         this.contentWrapper.appendChild(el)
