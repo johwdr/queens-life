@@ -28,7 +28,7 @@ export default class YearStory {
         const viewport = document.querySelector("meta[name=viewport]");
         viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
 
-        this.freq = 7500; //MS
+        this.freq = 5000; //MS
         this.activeSlide = 0;
         this.callBacksPreloadMedia = 0;
         this.currentlyPreloadMedia = 0;

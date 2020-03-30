@@ -1,0 +1,61 @@
+@import './../../../../styles/global.scss';
+
+#countdown-clock {
+    position: relative;
+    text-align: center;
+    z-index: 30;
+    color: $mainTextColor;
+    display: block;
+    width: auto;
+    max-width: 400px;
+
+
+    line-height: 1;
+    margin: 0px auto 60px;
+    box-sizing: border-box;
+    font-size: 50px;
+
+    font-family: Publik;
+    font-weight: 600;
+    width: 100%;
+    &.screen-hidden {
+        display: none;
+    }
+    &.final {
+
+        animation: final 0.6s;
+        animation-iteration-count:infinite;
+    }
+
+    svg {
+        position: absolute;
+        margin: 0 auto;
+        top: -33px;
+        right: 0;
+        left: 0;
+        width: 120px;
+        height: 120px;
+        transform: rotateY(-180deg) rotateZ(-90deg);
+    }
+    svg circle {
+        //stroke-dasharray: 113px;
+        stroke-dashoffset: 0px;
+        //stroke-linecap: round;
+        stroke-width: 6px;
+        stroke: $mainTextColor;
+        fill: none;
+        //animation: countdown linear infinite forwards;
+    }
+
+
+}
+
+@keyframes countdown {
+  from {
+    stroke-dashoffset: 0px;
+  }
+  to {
+
+    stroke-dashoffset: 113px;
+  }
+}

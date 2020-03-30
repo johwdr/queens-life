@@ -2,24 +2,27 @@
 
 [data-story] {
     #end-container {
-        color: #fff;
+        color: $mainTextColor;
         display: flex;
         text-align: center;
-        justify-content: flex-end;
+        justify-content: center;
         &.end-slide-hidden {
             display: none;
         }
         .year-button {
             font-size: 20px;
-            background: #eaceda;
-            color: #333;
+            background: none;
+            color: $mainTextColor;;
             border: none;
             padding: 15px 5px;
             display: block;
             margin-bottom: 20px;
         }
+        .end-element-hidden {
+            display: none;
+        }
         #end-more-link {
-            color: #fff;
+            color: $mainTextColor;;
         }
 
     }
