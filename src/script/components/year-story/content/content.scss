@@ -28,16 +28,19 @@
         @media (min-width: 500px) {
             width: $desktopStoryWidth;
             height: $desktopStoryHeight;
-            box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
+            box-shadow: 0px 0px 8px 0px #5E2A37;
             // rgba(0,0,0,0.5)
         }
         .slide-frontpage-content {
-            color: #fff;
+            color: $mainTextColor;
+            text-align: center;
+            max-width: 260px;
+
         }
         .story-content-wrapper-image {
             text-align: center;
             img {
-                max-height: 300px;
+                max-height: 350px;
                 width: auto;
             }
         }
