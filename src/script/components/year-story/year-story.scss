@@ -1,10 +1,13 @@
 @import './../../../styles/global.scss';
 
 [data-story] {
-
+    display: flex;
     .story-inner-wrapper {
         opacity: 1;
         transition: opacity .3s;
+        @media (min-width: $desktopMinWidth) {
+
+        }
     }
     &.story-loading {
         min-height: 100vh;

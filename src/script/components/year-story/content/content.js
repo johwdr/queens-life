@@ -95,24 +95,42 @@ export default class Content {
     }
     stopVideo(slide) {
 
-        if (!this.data[slide] || !this.data[slide].videoElement) {
-            return;
+        if (this.data[slide] && this.data[slide].videoElement) {
+            this.data[slide].videoElement.pause();
+            this.data[slide].videoElement.currentTime = 0;
         }
-
-        this.data[slide].videoElement.pause();
-        this.data[slide].videoElement.currentTime = 0;
+        console.log('stop')
+        if (this.data[slide] && this.data[slide].videoInlineElement) {
+            console.log('stop inline - ' + slide)
+            this.data[slide].videoInlineElement.pause();
+            this.data[slide].videoInlineElement.currentTime = 0;
+        }
 
     }
     startVideo(slide) {
 
-        if (!this.data[slide] || !this.data[slide].videoElement) {
+        if (slide < 1) {
             return;
         }
 
-        this.data[slide].videoElement.currentTime = 0;
-        this.data[slide].videoElement.play();
+        slide = slide-1;
+        if (this.data[slide] && this.data[slide].videoElement) {
+            this.data[slide].videoElement.currentTime = 0;
+            this.data[slide].videoElement.play();
+        }
+        console.log('start')
+
+        console.log(slide, this.data[slide])
+        if (this.data[slide] && this.data[slide].videoInlineElement) {
+            console.log('start inline' + slide)
+            this.data[slide].videoInlineElement.currentTime = 0;
+            this.data[slide].videoInlineElement.play();
+        }
+
     }
     isVideo(fileName) {
+
+        console.log(fileName)
         return (fileName.split('.').pop() === 'mp4');
     }
     addContentSlide(activeSlide) {
@@ -185,15 +203,26 @@ export default class Content {
             textOnly = false;
             const extension = currentSlideContents.billede.split('.').pop();
 
-            const fileTypeClass = (extension === 'gif') ? 'story-image-gif' : 'story-image-other';
 
+            if (extension === 'mp4') {
+                const fileTypeClass = 'story-image-video';
 
+                content += `
+                    <div class="story-content-wrapper-image ${fileTypeClass}">
+                        <video class="inline-video" autoplay muted playsinline>
+                            <source src="${currentSlideContents.billede}" type="video/mp4">
+                        </video>
+                    </div>
+                `;
+            } else {
+                const fileTypeClass = (extension === 'gif') ? 'story-image-gif' : 'story-image-other';
 
-            content += `
-                <div class="story-content-wrapper-image ${fileTypeClass}">
-                    <img src="${currentSlideContents.billede}" />
-                </div>
-            `;
+                content += `
+                    <div class="story-content-wrapper-image ${fileTypeClass}">
+                        <img src="${currentSlideContents.billede}" />
+                    </div>
+                `;
+            }
         }
 
 
@@ -275,8 +304,15 @@ export default class Content {
 
             }
         }
-        if (this.isVideo(currentSlideContents.baggrund)) {
+        if (currentSlideContents.baggrund && this.isVideo(currentSlideContents.baggrund)) {
             this.data[activeSlide].videoElement = el.querySelector('video');
+        }
+
+
+        if (currentSlideContents.billede && this.isVideo(currentSlideContents.billede)) {
+
+            console.log('HAS INLINE VIDEO')
+            this.data[activeSlide].videoInlineElement = el.querySelector('.inline-video');
         }
 
 

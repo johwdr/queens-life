@@ -28,7 +28,7 @@ export default class Navigation {
             this.backArrow.classList.remove('arrow-hidden')
         }
 
-        console.log(this.caller.noSlides, slide)
+
 
         if ((slide >= this.caller.noSlides)) {
             this.forwardArrow.classList.add('arrow-hidden')
@@ -129,9 +129,17 @@ export default class Navigation {
                     this.caller.pingvin.ping('backward-key')
                     this.caller.goBack();
                 }
-
-
+                if (e.code === "Space") {
+                    this.mouseUp()
+                }
             });
+
+            document.addEventListener('keydown', (e) => {
+
+                if (e.code === "Space") {
+                    this.mouseDown('Space')
+                }
+            })
         }
         innerWrapper.appendChild(forward);
         innerWrapper.appendChild(back);
@@ -176,7 +184,7 @@ export default class Navigation {
                 this.firstForward = true;
             }
             this.caller.goForward();
-        } else {
+        } else if (this.direction === 'back') {
             this.caller.pingvin.ping('backward')
             if (!this.firstBackward) {
                 this.caller.pingvin.ping('first-backward')

@@ -282,7 +282,7 @@ export default class YearStory {
         const activeSlide = Math.floor(this.currentInterval / this.freq);
 
         if (activeSlide != this.activeSlide) {
-
+            console.log(activeSlide, this.activeSlide)
             if (activeSlide  === this.noSlides) {
                 this.end();
                 return;
@@ -350,6 +350,8 @@ export default class YearStory {
 
         const el = this.content.getCurrentActiveSlideElement();
 
+        if (!el) return;
+
         const i = el.querySelector('.story-image-gif img');
         if (i) {
             freeze_gif(i);
@@ -358,6 +360,10 @@ export default class YearStory {
         const v = el.querySelector('.story-video video');
         if (v) {
             v.pause();
+        }
+        const il = el.querySelector('.inline-video');
+        if (il) {
+            il.pause();
         }
 
     }
@@ -374,6 +380,10 @@ export default class YearStory {
         const v = el.querySelector('.story-video video');
         if (v) {
             v.play();
+        }
+        const il = el.querySelector('.inline-video');
+        if (il) {
+            il.play();
         }
 
         const current = new Date().getTime();

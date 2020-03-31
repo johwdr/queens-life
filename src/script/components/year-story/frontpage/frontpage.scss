@@ -9,6 +9,9 @@
     display: flex;
     text-align: center;
     justify-content: center;
+    @media (min-width: $desktopMinWidth) {
+        margin-top: 20px;
+    }
     &.frontpage-hidden {
         display: none;
     }
