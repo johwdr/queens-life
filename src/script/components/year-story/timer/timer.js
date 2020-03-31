@@ -27,6 +27,11 @@ export default class Timer {
     build() {
         this.wrapper = document.createElement('div');
         this.wrapper.id = "countdown-clock"
+        this.wrapper.addEventListener('click', () => {
+            clearInterval(this.interval)
+            this.formatTime(0)
+            this.callback();
+        })
         this.timeText = document.createElement('div');
         this.timeText.innerText = '0'
         this.wrapper.appendChild(this.timeText);

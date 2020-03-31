@@ -8,6 +8,7 @@
     display: block;
     width: auto;
     max-width: 400px;
+    cursor: pointer;
 
 
     line-height: 1;
@@ -18,6 +19,9 @@
     font-family: Publik;
     font-weight: 600;
     width: 100%;
+    * {
+      pointer-events: none;
+    }
     &.screen-hidden {
         display: none;
     }

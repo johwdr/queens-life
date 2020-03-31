@@ -8,7 +8,7 @@ export default class Navigation {
     constructor(caller) {
         this.caller = caller;
 
-        if (!this.caller.wrapper) {
+        if (!this.caller.yearWrapper) {
             return
         }
 
@@ -144,10 +144,10 @@ export default class Navigation {
         innerWrapper.appendChild(forward);
         innerWrapper.appendChild(back);
 
-        this.caller.wrapper.appendChild(innerWrapper);
+        this.caller.yearWrapper.appendChild(innerWrapper);
 
-        this.caller.wrapper.appendChild(forwardArrow);
-        this.caller.wrapper.appendChild(backArrow);
+        this.caller.yearWrapper.appendChild(forwardArrow);
+        this.caller.yearWrapper.appendChild(backArrow);
 
         this.backArrow = backArrow;
         this.forwardArrow = forwardArrow;

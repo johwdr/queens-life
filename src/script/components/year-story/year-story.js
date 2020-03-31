@@ -188,6 +188,10 @@ export default class YearStory {
     }
     build() {
         const hash = this.getHash();
+        this.yearWrapper = document.createElement('div');
+        this.yearWrapper.id = 'year-wrapper';
+        this.wrapper.appendChild(this.yearWrapper);
+
         if (hash) {
 
             this.startStory(hash);
@@ -228,13 +232,15 @@ export default class YearStory {
 
     startStory(year, birthYear = false) {
 
+        this.yearWrapper.innerHTML = '';
+
         console.log('START STORY YEAR: ' + year);
 
         this.year = year;
 
         this.noSlides = this.data[this.year].length + 1;
-        this.progress = new Progress(this.wrapper, this.noSlides)
-        this.content = new Content(this.wrapper, this.data[this.year], year)
+        this.progress = new Progress(this.yearWrapper, this.noSlides)
+        this.content = new Content(this.yearWrapper, this.data[this.year], year)
         this.content.setActiveSlide(0);
         this.navigation = new Navigation(this)
         this.navigation.setActiveSlide(0);
