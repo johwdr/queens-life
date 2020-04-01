@@ -129,13 +129,19 @@
 
                 width: 100%;
             }
-            &.story-image-gif img {
+            /*&.story-image-gif img {
                 height: 100%;
                 width: 100%;
-            }
+            }*/
             video {
                 width: 100%;
                 object-fit: cover;
+            }
+            &.story-image-gif,
+            &.story-image-other {
+                background-size: cover;
+                background-position: center center;
+                background-repeat: no-repeat;
             }
         }
         .story-content-wrapper-body-inner-background {

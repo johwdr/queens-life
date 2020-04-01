@@ -185,8 +185,7 @@ export default class Content {
                 `;
             } else {
                 content += `
-                    <div class="story-background ${backgroundTypeClass}">
-                        <img src="${currentSlideContents.baggrund}" />
+                    <div class="story-background ${backgroundTypeClass}" style="background-image: url(${currentSlideContents.baggrund})">
                     </div>
                 `;
             }
