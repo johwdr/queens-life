@@ -54,7 +54,7 @@ export default class End {
             this.yearSelectButton.classList.add('end-element-hidden')
             this.timer.wrapper.classList.add('end-element-hidden');
             this.endSlideContent.classList.add('end-element-hidden');
-            this.label.classList.remove('end-element-hidden')
+
             this.selector.classList.remove('end-element-hidden')
         })
 
@@ -68,13 +68,8 @@ export default class End {
         //this.endSlideContent.innerHTML = endContent;
         this.container.appendChild(this.endSlideContent)
 
-        this.label = document.createElement('div')
-        this.label.classList.add('selector-label')
-        this.label.classList.add('end-element-hidden');
-        this.label.innerText = 'Gå direkte til et årstal'
-        this.container.appendChild(this.label)
-
         this.container.appendChild(this.selector)
+
 
 
 

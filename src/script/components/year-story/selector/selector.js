@@ -7,7 +7,7 @@ const timeoutDuration = 30;
 export default class Selector {
     constructor(callback, isBirthYear = true) {
 
-
+        this.defaultLabel = (isBirthYear) ? 'Indtast dit fødselsår' : 'Gå direkte til et årstal';
         this.isBirthYear = isBirthYear;
         this.callback = callback;
         this.container = document.createElement('div');
@@ -72,10 +72,18 @@ export default class Selector {
                 event.target.value = ''
             })
             this.container.appendChild(input);
+
+
+
             this.digitsInput[n] = input;
         }
 
+        const helpTextElement = document.createElement('div');
+        helpTextElement.classList.add('help-text');
+        helpTextElement.innerText = this.defaultLabel;
+        this.container.appendChild(helpTextElement)
 
+        this.helpTextElement = helpTextElement;
 
 
     }
@@ -174,7 +182,14 @@ export default class Selector {
 
         const year = Number(this.digitsInput[0].value + this.digitsInput[1].value + this.digitsInput[2].value + this.digitsInput[3].value);
 
-        return (year > 1900 && year <= 2020);
+        const valid = (year >= 1940 && year <= 2020);
+
+        if (!valid && year >= 1000) {
+            this.helpTextElement.innerText = 'Vælg et år mellem 1940 og 2020';
+
+        }
+
+        return valid;
 
     }
     initFocus() {

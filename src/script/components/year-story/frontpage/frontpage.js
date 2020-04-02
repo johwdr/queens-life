@@ -36,10 +36,7 @@ export default class Frontpage {
 
         this.container.appendChild(this.selector)
 
-        const helpTextElement = document.createElement('div');
-        helpTextElement.classList.add('help-text');
-        helpTextElement.innerText = 'Indtast dit fødselsår'
-        this.container.appendChild(helpTextElement)
+
 
         return {
             container: this.container
