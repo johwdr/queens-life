@@ -6,6 +6,11 @@
         display: flex;
         text-align: center;
         justify-content: center;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-color: #edc9d5;
+        background-image: url(https://dr.dk/nyheder/htm/grafik/2020/M80/m80-bagside-bg.jpg);
         @media (min-width: $desktopMinWidth) {
            margin-top: 20px;
         }

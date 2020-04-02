@@ -54,7 +54,7 @@ export default class Content {
         if (age === 80) {
             return `Dronning Margrethe bliver ${age} år gammel i ${this.year}`;
         }
-        return `Dronning Margrethe bliver ${age} år gammel i ${this.year}`;
+        return `Dronning Margrethe fylder ${age} år i ${this.year}`;
     }
     buildStartSlide() {
 
