@@ -229,7 +229,7 @@ export default class YearStory {
 
         }, false)
 
-        this.endScreen = new End(this.endScreenSelector.container, (year) => {
+        this.endScreen = new End(this.endScreenSelector, (year) => {
             this.endScreen.hide();
             this.startStory(year)
         }, this.config);

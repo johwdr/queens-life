@@ -16,7 +16,7 @@ export default class End {
 
         this.currentLinkIndex = 0;
         this.selector = selector;
-        this.selector.classList.add('end-element-hidden')
+        this.selector.container.classList.add('end-element-hidden')
         this.linkFunction = linkFunction;
         this.config = config;
         return this.build();
@@ -55,7 +55,10 @@ export default class End {
             this.timer.wrapper.classList.add('end-element-hidden');
             this.endSlideContent.classList.add('end-element-hidden');
 
-            this.selector.classList.remove('end-element-hidden')
+            this.selector.container.classList.remove('end-element-hidden')
+
+            this.selector.initFocus()
+
         })
 
 
@@ -68,7 +71,7 @@ export default class End {
         //this.endSlideContent.innerHTML = endContent;
         this.container.appendChild(this.endSlideContent)
 
-        this.container.appendChild(this.selector)
+        this.container.appendChild(this.selector.container)
 
 
 
@@ -112,7 +115,7 @@ export default class End {
         this.yearSelectButton.classList.remove('end-element-hidden')
         this.timer.wrapper.classList.remove('end-element-hidden');
         this.endSlideContent.classList.remove('end-element-hidden');
-        this.selector.classList.add('end-element-hidden')
+        this.selector.container.classList.add('end-element-hidden')
         this.timer.start();
     }
     hide() {
