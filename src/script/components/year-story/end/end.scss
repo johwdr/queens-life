@@ -5,33 +5,49 @@
         color: $mainTextColor;
         display: flex;
         text-align: center;
-        justify-content: center;
+        justify-content: flex-start;
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
         background-color: #edc9d5;
         background-image: url(https://dr.dk/nyheder/htm/grafik/2020/M80/m80-bagside-bg.jpg);
+        padding-top: 100px;
         @media (min-width: $desktopMinWidth) {
            margin-top: 20px;
         }
         &.end-slide-hidden {
             display: none;
         }
+        #story-selector-wrapper {
+            margin-top: 120px;
+        }
         .year-button {
-            font-size: 20px;
+            font-size: 14px;
             background: none;
             color: $mainTextColor;;
             border: none;
             padding: 15px 5px;
             display: block;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+            margin-top: 50px;
+            outline: none;
         }
         .end-element-hidden {
             display: none;
         }
         #end-more-link {
             color: $mainTextColor;;
+            font-size: 14px;
+            text-decoration: none;
         }
-
+        .next-text {
+            font-weight: 900;
+            font-size: 22px;
+            max-width: 220px;
+            margin: 0 auto;
+        }
+        .end-arrow {
+            width: 14px;
+        }
     }
 }
