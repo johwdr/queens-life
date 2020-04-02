@@ -49,12 +49,12 @@ export default class Content {
         const age = this.year - 1940;
 
         if (age === 0) {
-            return `Dronning Margrethe blev født i ${this.year}`;
+            return `Dronning Margrethe bliver født i ${this.year}`;
         }
         if (age === 80) {
             return `Dronning Margrethe bliver ${age} år gammel i ${this.year}`;
         }
-        return `Dronning Margrethe blev ${age} år gammel i ${this.year}`;
+        return `Dronning Margrethe bliver ${age} år gammel i ${this.year}`;
     }
     buildStartSlide() {
 
