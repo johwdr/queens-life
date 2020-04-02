@@ -5,6 +5,7 @@ import 'whatwg-fetch'
 import './year-story.scss'
 
 import ScreenWarnings from '../screen-warnings/screen-warnings'
+import Infobox from '../infobox/infobox'
 import Progress from './progress/progress'
 import Content from './content/content'
 import Navigation from './navigation/navigation'
@@ -36,6 +37,9 @@ export default class YearStory {
 
         const el = document.querySelector('[data-story]');
         this.container = el;
+
+
+
         this.wrapper = document.createElement('div');
         this.wrapper.classList.add('story-inner-wrapper')
 
@@ -192,6 +196,9 @@ export default class YearStory {
         this.yearWrapper.id = 'year-wrapper';
         this.wrapper.appendChild(this.yearWrapper);
 
+        this.infobox = new Infobox(this.config);
+
+
         if (hash) {
 
             this.startStory(hash);
@@ -208,7 +215,7 @@ export default class YearStory {
                 this.startStory(year, true);
 
             })
-            this.frontPage = new Frontpage(this.frontPageSelector.container);
+            this.frontPage = new Frontpage(this.infobox, this.frontPageSelector.container);
             this.wrapper.appendChild(this.frontPage.container);
             this.container.classList.remove('story-loading')
 

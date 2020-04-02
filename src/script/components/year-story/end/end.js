@@ -103,6 +103,10 @@ export default class End {
         console.log(data)
         if (Number(data.aarstal) === Number(this.currentYear)) {
             this.currentLinkIndex++;
+
+            if (this.currentLinkIndex >= this.data.length) {
+                this.currentLinkIndex = 0;
+            }
             return this.data[this.currentLinkIndex];
         }
         return data;

@@ -3,8 +3,9 @@
 import './frontpage.scss'
 
 export default class Frontpage {
-    constructor(selector) {
+    constructor(infobox, selector) {
         this.selector = selector;
+        this.infobox = infobox;
         this.build();
     }
 
@@ -15,6 +16,12 @@ export default class Frontpage {
         this.container.id = 'frontpage-container'
         this.container.classList.add('story-slide');
 
+
+
+        this.container.appendChild(this.infobox.box)
+        this.container.appendChild(this.infobox.button)
+
+
         this.frontpageContent = document.createElement('div');
 
         /*this.frontpageContent.innerHTML = `
@@ -23,7 +30,7 @@ export default class Frontpage {
         `;*/
         this.frontpageContent.innerHTML = `
 
-            <h1>Hvad lavede dronningen, da hun var på din alder</h1>
+            <h1>Hvad lavede dronningen, da hun var på din alder?</h1>
         `;
         this.container.appendChild(this.frontpageContent)
 
