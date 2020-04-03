@@ -38,8 +38,10 @@
         .slide-frontpage-content {
             color: $mainTextColor;
             text-align: center;
-            max-width: 180px;
-            line-height: 1.4;
+            max-width: 190px;
+            line-height: normal;
+            font-size: 22px;
+            font-weight: 900;
         }
         .story-content-wrapper-image {
             text-align: center;
