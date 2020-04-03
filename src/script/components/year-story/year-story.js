@@ -243,7 +243,7 @@ export default class YearStory {
 
         this.seen++;
 
-        this.pingvin.ping('seen', this.seen)
+        this.pingvin.ping('seen-' + this.seen)
 
 
         this.yearWrapper.innerHTML = '';
