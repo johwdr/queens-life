@@ -38,7 +38,7 @@ export default class YearStory {
         const el = document.querySelector('[data-story]');
         this.container = el;
 
-
+        this.seen = 0;
 
         this.wrapper = document.createElement('div');
         this.wrapper.classList.add('story-inner-wrapper')
@@ -213,6 +213,7 @@ export default class YearStory {
                 this.frontPageSelector.hide();
                 //this.setHash(year);
                 this.startStory(year, true);
+                this.pingvin.ping('first-select')
 
             })
             this.frontPage = new Frontpage(this.infobox, this.frontPageSelector.container);
@@ -223,7 +224,7 @@ export default class YearStory {
         this.endScreenSelector = new Selector((year) => {
 
             this.endScreen.hide();
-
+            this.pingvin.ping('select')
             //this.setHash(year);
             this.startStory(year);
 
@@ -231,6 +232,7 @@ export default class YearStory {
 
         this.endScreen = new End(this.endScreenSelector, (year) => {
             this.endScreen.hide();
+            this.pingvin.ping('next-auto')
             this.startStory(year)
         }, this.config);
         this.wrapper.appendChild(this.endScreen.container);
@@ -238,6 +240,11 @@ export default class YearStory {
     }
 
     startStory(year, birthYear = false) {
+
+        this.seen++;
+
+        this.pingvin.ping('seen', this.seen)
+
 
         this.yearWrapper.innerHTML = '';
 
