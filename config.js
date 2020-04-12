@@ -31,7 +31,7 @@ let config = {
         OVERWRITE_CONFIRM:true,
         WEBDOK:true,
         MINIFY:true,
-        BASE_URL:'https://www.dr.dk/nyheder/htm/grafik/2019/',
+        BASE_URL:'https://www.dr.dk/nyheder/htm/grafik/2020/',
     }
 }
 module.exports = config;
