@@ -1,5 +1,14 @@
 @import './../../../../styles/global.scss';
 
+.in-app-browser [data-story] #end-container {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    z-index: 90;
+    right: 0;
+}
+
+
 [data-story] {
     #end-container {
         color: $mainTextColor;

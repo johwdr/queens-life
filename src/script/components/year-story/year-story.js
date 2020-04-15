@@ -25,6 +25,13 @@ export default class YearStory {
         document.documentElement.style.setProperty('--vh', `${vh}px`);
 
 
+        const url = window.location.href;
+        const inApp = url.indexOf("app_mode=true") > 0;
+        console.log(inApp)
+        if (inApp) {
+            document.documentElement.classList.add('in-app-browser');
+        }
+
         // UGLY ZOOM HACH
         const viewport = document.querySelector("meta[name=viewport]");
         viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');

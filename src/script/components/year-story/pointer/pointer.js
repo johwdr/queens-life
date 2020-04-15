@@ -48,31 +48,44 @@ export default class Pointer {
         this.triggerElement.addEventListener('mouseenter', (event) => {
             this.holdLabel.classList.add('active')
             this.active = true;
+            this.animate()
         })
 
         this.triggerElement.addEventListener('mouseleave', () => {
             this.holdLabel.classList.remove('active')
             this.active = false;
+            this.animate()
         })
 
         this.body.addEventListener('mousemove', (event) => {
                 this.x = event.clientX;
                 this.y = event.clientY;
+                this.animate();
         })
         this.body.addEventListener('mousedown', () => {
 
             this.holdLabel.classList.add('pressed')
             this.pressed = true;
+            this.animate()
         })
 
         this.body.addEventListener('mouseup', () => {
             this.holdLabel.classList.remove('pressed')
             this.pressed = false;
+            this.animate()
         })
 
 
     }
     animate() {
+        if (this.animating) {
+            return;
+        }
+        this.animating = true;
+        setTimeout(() => {
+            this.animating = false;
+        }, 50)
+
 
         let transformString = '';
         transformString += `translate3d(${this.x - 40}px, ${this.y - 40}px, 0) `;
@@ -85,7 +98,7 @@ export default class Pointer {
         this.holdLabel.style.transform = transformString;
         if (this.enabled) {
             requestAnimationFrame(() => {
-                this.animate();
+                //this.animate();
             })
         }
     }

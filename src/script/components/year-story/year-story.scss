@@ -1,7 +1,10 @@
 @import './../../../styles/global.scss';
 
+
+
 [data-story] {
     display: flex;
+    position: relative;
     .story-inner-wrapper {
         opacity: 1;
         transition: opacity .3s;

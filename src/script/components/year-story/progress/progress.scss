@@ -1,5 +1,14 @@
 @import './../../../../styles/global.scss';
 
+
+.in-app-browser [data-story] #story-progress-element {
+    top: 40px;
+    left: 0;
+    z-index: 90;
+    right: 0;
+}
+
+
 [data-story] {
 
 

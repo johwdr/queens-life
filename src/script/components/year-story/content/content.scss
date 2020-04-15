@@ -1,5 +1,14 @@
 @import './../../../../styles/global.scss';
 
+
+.in-app-browser [data-story] #year-wrapper {
+    position: fixed;
+    top: 25px;
+    left: 0;
+    z-index: 90;
+    right: 0;
+}
+
 [data-story] {
     .story-content-wrapper-hidden {
         display: none;
