@@ -12,12 +12,12 @@ const layoutTranslations = {
 }
 
 export default class Content {
-    constructor(container, data, year) {
+    constructor(container, data, year, birthYear) {
         this.year = year;
         this.container = container;
         this.data = data;
         this.slideEls = [];
-
+        this.birthYear = birthYear;
         this.currentActiveSlide = null;
         this.build();
 
@@ -54,7 +54,12 @@ export default class Content {
         if (age === 80) {
             return `Dronning Margrethe bliver ${age} år gammel i ${this.year}`;
         }
-        return `Dronning Margrethe fylder ${age} år i ${this.year}`;
+        console.log('--- ' + this.birthYear)
+        if (this.birthYear) {
+            return `Dronning Margrethe er på din alder i ${this.year}, hvor hun fylder ${age} år`;
+        } else {
+            return `Dronning Margrethe fylder ${age} år i ${this.year}`;
+        }
     }
     buildStartSlide() {
 

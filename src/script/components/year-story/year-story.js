@@ -261,7 +261,7 @@ export default class YearStory {
 
         this.noSlides = this.data[this.year].length + 1;
         this.progress = new Progress(this.yearWrapper, this.noSlides)
-        this.content = new Content(this.yearWrapper, this.data[this.year], year)
+        this.content = new Content(this.yearWrapper, this.data[this.year], year, birthYear)
         this.content.setActiveSlide(0);
         this.navigation = new Navigation(this)
         this.navigation.setActiveSlide(0);
