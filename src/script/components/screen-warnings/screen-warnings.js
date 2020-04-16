@@ -54,7 +54,7 @@ export default class ScreenWarnings {
                 // you're in LANDSCAPE mode
                 console.log('is landscape')
 
-                this.mobileWarning.style.display = 'flex';
+                //this.mobileWarning.style.display = 'flex';
             } else {
                 console.log('is portrait')
                 this.mobileWarning.style.display = 'none';
@@ -67,7 +67,7 @@ export default class ScreenWarnings {
         console.log('is desk')
         if (window.innerHeight < 660 && window.outerHeight < screen.height) {
 
-            this.desktopWarning.style.display = 'flex';
+            //this.desktopWarning.style.display = 'flex';
 
         } else {
             this.desktopWarning.style.display = 'none';
